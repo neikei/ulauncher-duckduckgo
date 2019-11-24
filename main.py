@@ -1,5 +1,5 @@
 import logging
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 from ulauncher.api.client.Extension import Extension
 from ulauncher.api.client.EventListener import EventListener
@@ -12,18 +12,14 @@ from ulauncher.api.shared.action.OpenUrlAction import OpenUrlAction
 LOGGER = logging.getLogger(__name__)
 
 # to encode URL
-
-
 def urlencode(qp):
-    return urllib.urlencode(qp)
-
+    return urllib.parse.urlencode(qp)
 
 class DUCKExtension(Extension):
 
     def __init__(self):
         super(DUCKExtension, self).__init__()
         self.subscribe(KeywordQueryEvent, KeywordQueryEventListener())
-
 
 class KeywordQueryEventListener(EventListener):
 
